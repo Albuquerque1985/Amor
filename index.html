@@ -1,29 +1,100 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Surpresa para você❤️</title>
+    <title>Para Você, Meu Amor❤️</title>
     <style>
         body {
-            background-color: #000;
-            color: #fff;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #ffc0cb, #ffe4e1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            font-family: Arial;
-            padding-top: 50px;
+            color: #800000;
+            overflow: hidden;
         }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 2.5em;
+            animation: pulse 2s infinite;
+        }
+
         video {
-            width: 90%;
-            max-width: 600px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+            margin-top: 30px;
+            max-width: 90%;
+            border: 8px solid white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* corações caindo */
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: fall 10s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Para o amor da minha vida 💖</h1>
-    <video controls autoplay>
-        <source src="video.mp4" type="video/mp4">
-        Seu navegador não suporta vídeos :(
-    </video>
+    <h1>Para você, meu amor ❤️</h1>
+    <video src="video.mp4" autoplay muted controls></video>
+
+    <!-- JavaScript para criar os corações -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
